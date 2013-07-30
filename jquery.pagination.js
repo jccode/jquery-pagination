@@ -64,16 +64,18 @@ javascript
                     clickHandler(currentPage, $target.html());
                 }
 
-                // prev
+                // first
                 else if($target.hasClass(CLASS_PREV)) {
                     if(currentPage > 1)
-                        clickHandler(currentPage, parseInt(currentPage)-1);
+                        // clickHandler(currentPage, parseInt(currentPage)-1);
+                        clickHandler(currentPage, 1);
                 }
 
-                // next
+                // last
                 else if($target.hasClass(CLASS_NEXT)) {
                     if(currentPage < opts.count) 
-                        clickHandler(currentPage, parseInt(currentPage)+1);
+                        // clickHandler(currentPage, parseInt(currentPage)+1);
+                        clickHandler(currentPage, opts.count);
                 }
 
                 return false;
