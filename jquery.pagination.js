@@ -124,7 +124,9 @@ javascript
             opts = pagination.options;
         $el.data("page", newPage);
         if(!opts.refresh) {
-            pagination.render();
+            pagination.render({
+                "page": newPage
+            });
         }
         opts.callback && opts.callback.call(null, currentPage, newPage);
     }
@@ -233,8 +235,8 @@ javascript
         className: "",              // additional class name
         refresh: true,          // whether refresh when page no changes. Typically, this value set false when using ajax.
         title: {                // title of the previous btn & next btn.
-            prev: "«", 
-            next: "»"
+            prev: "&laquo;",          // "«"
+            next: "&raquo;"           // "»"
         }
     }
 
