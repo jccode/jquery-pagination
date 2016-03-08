@@ -61,21 +61,21 @@ javascript
 
                 // number
                 if($target.hasClass(CLASS_NUM)) { 
-                    clickHandler(currentPage, $target.html());
+                    clickHandler($el, currentPage, $target.html());
                 }
 
                 // first
                 else if($target.hasClass(CLASS_PREV)) {
                     if(currentPage > 1)
                         // clickHandler(currentPage, parseInt(currentPage)-1);
-                        clickHandler(currentPage, 1);
+                        clickHandler($el, currentPage, 1);
                 }
 
                 // last
                 else if($target.hasClass(CLASS_NEXT)) {
                     if(currentPage < opts.count) 
                         // clickHandler(currentPage, parseInt(currentPage)+1);
-                        clickHandler(currentPage, opts.count);
+                        clickHandler($el, currentPage, opts.count);
                 }
 
                 return false;
@@ -120,9 +120,8 @@ javascript
         return result;
     }
 
-    function clickHandler(currentPage, newPage) {
-        var pagination = $(document).data("pagination");
-            $el = pagination.$el, 
+    function clickHandler($el, currentPage, newPage) {
+        var pagination = $el.data("pagination");
             opts = pagination.options;
         $el.data("page", newPage);
         if(!opts.refresh) {
@@ -213,9 +212,9 @@ javascript
 
 
     $.fn.pagination = function (options) {
-        var $doc = $(document),
-            instance = $doc.data("pagination");
-        if(!instance) $doc.data("pagination", (instance = new Pagination($(this), options)));
+        var $this = $(this), 
+            instance = $this.data("pagination");
+        if(!instance) $this.data("pagination", (instance = new Pagination($this, options)));
         instance.render({
             page: options.page,
             count: options.count
